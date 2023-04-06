@@ -32,12 +32,16 @@
                         <div>{{ key + 1 }}</div>
                     </div>
                     <div class="info">
+                        {% if item.Tittel %}
                         <h3>{{ item.Tittel
                             |preg_replace('/ : .*roman/','')
                             |preg_replace('/ \\. \\d/', '')
                             |replace({'&amp;':'&'})
                             |preg_replace('/ tidsskrift/','')
                         }}</h3>
+                        {% else %}
+                        <p>Ukjent. (Tittelen er kassert)</p>
+                        {% endif %}
                         <p>{{ item.Ordningsord }}</p>
                         <p><a href="https://{{ bibliotek.underdomene }}.bib.no/cgi-bin/m2?tnr={{ item.tnr }}">Lån den her.</a></p>
                     </div>
