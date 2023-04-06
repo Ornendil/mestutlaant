@@ -5,9 +5,11 @@ function skaffListe($aar, $key, $ccl = 'ff=l'){
     $underdomene = basename($config['bibliotek']['underdomene']);
     // var_dump($underdomene);
     $aar = preg_replace('/\D/', '', $aar);
+    $aar = basename($aar);
     
     $ccl = preg_replace('/ /', '+', $ccl);
     $ccl = preg_replace('/[^0-9a-zA-ZÆØÅæøå=&+()]/', '', $ccl);
+    $ccl = basename($ccl);
 
     $filename = "cache/".$underdomene."-".$aar."-".$key.".json";
 
@@ -20,7 +22,7 @@ function skaffListe($aar, $key, $ccl = 'ff=l'){
     if (file_exists($filename) && $reload == false) {
         $liste = json_decode(file_get_contents($filename),true);
     } else {
-        $url = 'https://'.$underdomene.'.bib.no/cgi-bin/rest_service/webapi_statistikk/1.0/data/'.basename('?f_ccl='.$ccl.'&f_dato_fra='.$aar.'-01-01&f_dato_til='.$aar.'-12-31&f_aktivitet=U&mode=utlangenerer&f_tid_fra=&f_tid_til=&f_alder_fra=&f_alder_til=&f_postnr_fra=&f_postnr_til=&f_eksnr_fra=&f_eksnr_til=&maxantall=10&sortering=antall&format=json&epost=&preskolonne=titnr');
+        $url = 'https://'.$underdomene.'.bib.no/cgi-bin/rest_service/webapi_statistikk/1.0/data/?f_ccl='.$ccl.'&f_dato_fra='.$aar.'-01-01&f_dato_til='.$aar.'-12-31&f_aktivitet=U&mode=utlangenerer&f_tid_fra=&f_tid_til=&f_alder_fra=&f_alder_til=&f_postnr_fra=&f_postnr_til=&f_eksnr_fra=&f_eksnr_til=&maxantall=10&sortering=antall&format=json&epost=&preskolonne=titnr';
 
         $json_statistikk = json_decode(file_get_contents($url), true);
         $liste = $json_statistikk["statistikk"]['data'];
@@ -33,7 +35,9 @@ function skaffListe($aar, $key, $ccl = 'ff=l'){
             unset($liste[$key][1]);
             $ids .= $bok[0].",";
         }
-        
+        $ids = basename($ids);
+
+
         // Berik med data fra rest-service
         $restUrl = 'https://'.$underdomene.'.bib.no/cgi-bin/rest_service/items/1.0/data/'.$ids;
         $restContents = json_decode(file_get_contents($restUrl), true);
@@ -55,6 +59,7 @@ function skaffListe($aar, $key, $ccl = 'ff=l'){
         foreach ($liste as $key => $bok){
             $bibliofilIds .= $bok['bibliofilid'].",";
         }
+        $bibliofilIds = basename($bibliofilIds);
 
         $krydderUrl = 'https://krydder.bib.no/cgi-bin/krydderxml?bibid=' . $bibliofilIds . '&format=json';
         $krydderContents = json_decode(file_get_contents($krydderUrl), true);
