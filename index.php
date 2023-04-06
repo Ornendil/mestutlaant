@@ -28,7 +28,7 @@ $twig->addFilter(new \Twig\TwigFilter('preg_replace', function($subject, $patter
 }));
 
 if (isset( $_GET['aar'])) {
-    $aar = preg_replace('/\D/', '', $_GET['aar']);
+    $aar = preg_replace('/\D/', '', htmlspecialchars($_GET['aar']));
 } else {
     $aar = date("Y") - 1;
 }
