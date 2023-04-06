@@ -2,7 +2,8 @@
 
 function skaffListe($aar, $key, $ccl = 'ff=l'){
     global $config;
-    $underdomene = htmlspecialchars($config['bibliotek']['underdomene']);
+    $underdomene = basename($config['bibliotek']['underdomene']);
+    // var_dump($underdomene);
     $aar = preg_replace('/\D/', '', $aar);
     
     $ccl = preg_replace('/ /', '+', $ccl);
