@@ -33,13 +33,23 @@ if (isset( $_GET['aar'])) {
     $aar = date("Y") - 1;
 }
 
+$serverUrl = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https://' : 'http://' ) . $_SERVER['SERVER_NAME'];
+
+$dangerPath = realpath($_SERVER['DOCUMENT_ROOT'] . dirname($_SERVER['PHP_SELF']));
+if ($dangerPath == __DIR__){
+    $safePath = str_replace($_SERVER['DOCUMENT_ROOT'], '', __DIR__);
+    $baseUrl = $serverUrl . $safePath;
+} else {
+    echo "Warning: Accessing this file is not allowed by the server";
+}
+
 include('list.php');
 
 foreach ($config['lister'] as $key => $liste){
     if (isset($liste['ccl'])) {
-        $config['lister'][$key]['data'] = skaffListe($aar, $liste ['ccl']);
+        $config['lister'][$key]['data'] = skaffListe($aar, $key, $liste ['ccl']);
     } else {
-        $config['lister'][$key]['data'] = skaffListe($aar);
+        $config['lister'][$key]['data'] = skaffListe($aar, $key);
     }
 }
 
@@ -49,6 +59,7 @@ echo $twig->render('index.twig', [
     'aar' => $aar,
     'lister' => $config['lister'],
     'bibliotek' => $config['bibliotek'],
+    'baseUrl' => $baseUrl,
 ]);
 
 ?>

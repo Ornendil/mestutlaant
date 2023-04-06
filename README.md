@@ -32,3 +32,13 @@ I filen config.yaml setter du innstillingene for ditt bibliotek under 'bibliotek
 * "ccl" er CCL-søket du bruker for å finne frem de riktige bøkene (se [Bibliofil-håndbøkene om CCL](https://dok.bibsyst.no/web/m2/m2-int-sok.html#m2-ccl))
 
 Bytt ut fila "bord.jpg" med logoen til ditt eget bibliotek.
+
+## Bruk
+
+En lenke direkte til denne siden vil vise utlånstoppen for fjoråret. Hvis du vil vise andre år kan du legge på årstallet bak (som om det var en undermappe).
+
+Hvis, for eksempel, denne siden ligger på `https://example.com` blir linken for 2021 `   https://example.com/2021`
+
+Første gang du laster et nytt år kan det ta litt tid å laste siden. Innholdet blir cachet i `cache/`
+
+Du kan refreshe cachen (f.eks. hvis du har krydret noe etter at det ble cachet) med å legge på 'reload'. Eks.: `https://example.com/2021/reload`
