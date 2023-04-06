@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteRule ^(\d\d\d\d)$ index.php?aar=$1?reload=false
+RewriteRule ^(\d\d\d\d)/reload$ index.php?aar=$1&reload=true
+RewriteRule ^\D$ 404.html

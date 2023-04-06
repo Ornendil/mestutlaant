@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="nb">
+    <head>
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <link rel="stylesheet" href="css/style.min.css">
+        <title>Utlånstoppen i {{ bibliotek.navn }} i {{ aar }}</title>
+    </head>
+    <body>
+        <div id="main">
+            <h1>Utlånstoppen i {{ bibliotek.navn }} i {{ aar }}</h1>
+            <div class="hero">
+                {% for item in lister.alle.data -%}
+                <img class="image" src="{{ item.Krydderbilde }}">
+                {%- endfor %}
+            </div>
+
+            <p>Se hvilke bøker {{ bibliotek.demonym }} lånte mest av i {{ aar }}. Her finner du lister over de ti mest utlånte titlene i {{ lister|filter(liste => liste.hide != true)|length }} ulike kategorier.</p>
+
+            {% for liste in lister %}
+            {% if liste.hide != true %}
+            <h2>{{ liste.tittel }}</h2>
+            <div class="liste">
+                {% for key, item in liste.data %}
+                <div class="item">
+                    <!--<div class="nummer">{{ key + 1 }}</div>-->
+                    <div class="image">
+                        {% if item.Krydderbilde %}
+                        <img src="{{ item.Krydderbilde }}">
+                        {% endif %}
+                        <div>{{ key + 1 }}</div>
+                    </div>
+                    <div class="info">
+                        <h3>{{ item.Tittel
+                            |preg_replace('/ : .*roman/','')
+                            |preg_replace('/ \\. \\d/', '')
+                            |replace({'&amp;':'&'})
+                            |preg_replace('/ tidsskrift/','')
+                        }}</h3>
+                        <p>{{ item.Ordningsord }}</p>
+                        <p><a href="https://{{ bibliotek.underdomene }}.bib.no/cgi-bin/m2?tnr={{ item.tnr }}">Lån den her.</a></p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </body>
+</html>

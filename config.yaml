@@ -1,0 +1,40 @@
+bibliotek:
+    navn: Ullensaker # Navnet på kommunen din
+    demonym: Ullsokningene # Navnet på de som bor i kommunen din
+    underdomene: ullensaker # navnet på biblioteket ditt sånn det ser ut i https://____.bib.no
+lister:
+    alle:
+        tittel: Alle
+        hide: true
+    voksen:
+        tittel: De ti mest lånte bøkene for voksne
+        ccl: >-
+            (ff=l) og (bn=voksen)
+    ung:
+        tittel: De ti mest lånte bøkene for ungdom
+        ccl: >-
+            (ff=l) og (ag=mu) og (plass=mu engelsk eller plass=mu skjønn eller plass=mu fag eller plass=Spenning)
+    barn:
+        tittel: De ti mest lånte bøkene for barn
+        ccl: >-
+            (ff=l) og (bn=barn)
+    tegneserier:
+        tittel: De ti mest lånte tegneseriene for barn/ungdom
+        ccl: >-
+            ("plass=tegneserier") og (bn=barn eller bn=d)
+    fag:
+        tittel: De ti mest lånte fagbøkene for voksne
+        ccl: >-
+            (ff=l) og ("LF=0") og (bn=voksen)
+    fagBarn:
+        tittel: De ti mest lånte fagbøkene for barn
+        ccl: >-
+            (ff=l) og ("LF=0") og (bn=barn)
+    filmer:
+        tittel: De ti mest lånte filmene
+        ccl: >-
+            (ff=ee)
+    fantasy:
+        tittel: De ti mest lånte fantasy-bøkene
+        ccl: >-
+            (ff=l) og (plass=Dark Romance eller plass=Dystopi eller plass=Engelsk Fantasy eller plass=Fantasy eller plass=Sci-Fi eller plass=SF fantasy)
