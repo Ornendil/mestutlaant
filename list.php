@@ -8,7 +8,7 @@ function skaffListe($aar, $key, $ccl = 'ff=l'){
     $ccl = preg_replace('/ /', '+', $ccl);
     $ccl = preg_replace('/[^0-9a-zA-ZÆØÅæøå=&+()]/', '', $ccl);
 
-    $filename = "cache/".$aar."-".$key.".json";
+    $filename = "cache/".$underdomene."-".$aar."-".$key.".json";
 
     if (isset($_GET['reload']) && $_GET['reload'] == 'true'){
         $reload = true;
