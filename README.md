@@ -29,6 +29,6 @@ I filen config.yaml setter du innstillingene for ditt bibliotek under 'bibliotek
         ccl: >-
             (ff=l) og (bn=voksen)
 
-* "ccl" er CCL-søker du bruker for å finne frem de riktige bøkene (se [Bibliofil-håndbøkene om CCL](https://dok.bibsyst.no/web/m2/m2-int-sok.html#m2-ccl))
+* "ccl" er CCL-søket du bruker for å finne frem de riktige bøkene (se [Bibliofil-håndbøkene om CCL](https://dok.bibsyst.no/web/m2/m2-int-sok.html#m2-ccl))
 
 Bytt ut fila "bord.jpg" med logoen til ditt eget bibliotek.
